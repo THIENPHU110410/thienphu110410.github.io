@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>TP DESIGN PPTX — Kho slide PowerPoint</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <meta name="description" content="Bộ sưu tập mẫu slide PowerPoint — hiển thị thông tin minh bạch, không phải sàn thương mại điện tử." />
-  <meta name="theme-color" content="#070a16" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <meta name="description" content="Bộ sưu tập mẫu slide PowerPoint — hiển thị thông tin minh bạch, không phải sàn thương mại điện tử.">
+  <meta name="theme-color" content="#070a16">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://thienphu110410.github.io",
+  "logo": "https://i.ibb.co/tM5crsR5/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png",
+  "name": "TP DESIGN"
+}
+</script>
+  <link rel="icon" href="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" type="image/png">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "url": "https://thienphu110410.github.io",
-    "logo": "https://i.ibb.co/tM5crsR5/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png",
-    "name": "TP DESIGN"
-  }
-  </script>
-
-  <link rel="icon" href="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" type="image/png" />
-  <link rel="apple-touch-icon" href="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -171,7 +169,7 @@
     .btn-zalo{border-color:rgba(34,211,238,.35)}
     .btn-mail{border-color:rgba(52,211,153,.35)}
 
-    /* Announcement (FIX: chạy mượt, vô tận) */
+    /* Announcement */
     .announce{
       position:relative;
       overflow:hidden;
@@ -179,8 +177,7 @@
       background:linear-gradient(90deg, rgba(124,58,237,.22), rgba(34,211,238,.14), rgba(124,58,237,.22));
     }
     .announce-track{
-      display:flex;
-      gap:48px;
+      display:flex; gap:48px;
       width:max-content;
       padding:10px 0;
       will-change:transform;
@@ -192,8 +189,8 @@
       white-space:nowrap;
     }
     @keyframes marq{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-50%)}
     }
     @media (prefers-reduced-motion: reduce){
       .announce-track{animation:none; justify-content:center; width:auto}
@@ -202,7 +199,9 @@
     main{position:relative; z-index:1}
 
     /* Hero */
-    .hero{padding:28px 0 10px}
+    .hero{
+      padding:28px 0 10px;
+    }
     .hero-card{
       border-radius:calc(var(--radius) + 6px);
       padding:22px 22px;
@@ -275,7 +274,9 @@
     .pill.bad .dot{background:var(--danger)}
 
     /* Catalog */
-    .section{padding:18px 0 10px}
+    .section{
+      padding:18px 0 10px;
+    }
     .section-head{
       display:flex; flex-wrap:wrap; gap:14px;
       align-items:flex-end; justify-content:space-between;
@@ -584,11 +585,22 @@
       font-size:12px;
     }
 
-    .dmca-wrap{margin-top:14px; display:flex; justify-content:flex-start}
-    .dmca-badge img{display:block; height:32px; width:auto; opacity:.95}
+    .dmca-wrap{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-start;
+    }
+    .dmca-badge img{
+      display:block;
+      height:32px;
+      width:auto;
+      opacity:.95;
+    }
 
     /* Legal */
-    .legal{padding:18px 0 10px}
+    .legal{
+      padding:18px 0 10px;
+    }
     .legal-card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.12);
@@ -615,11 +627,21 @@
       line-height:1.6;
       font-size:13px;
     }
-    .legal ul{margin:0 0 10px 18px; padding:0}
-    .legal .muted-strong{color:rgba(255,255,255,.78); font-weight:800}
+    .legal ul{
+      margin:0 0 10px 18px;
+      padding:0;
+    }
+    .legal .muted-strong{
+      color:rgba(255,255,255,.78);
+      font-weight:800;
+    }
 
-    @media (max-width: 900px){ .foot-grid{grid-template-columns:1fr} }
-    @media (max-width: 760px){ .header-row{flex-wrap:wrap} }
+    @media (max-width: 900px){
+      .foot-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      .header-row{flex-wrap:wrap}
+    }
     @media (max-width: 520px){
       .hero-card{padding:18px 16px}
       .btn span.lbl{display:none}
@@ -680,7 +702,12 @@
       margin:0 auto 12px;
       display:block;
     }
-    .boot-name{margin:0; font-size:18px; font-weight:950; letter-spacing:.2px}
+    .boot-name{
+      margin:0;
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:.2px;
+    }
     .boot-sub{
       margin:8px auto 0;
       max-width:42ch;
@@ -700,7 +727,11 @@
       font-size:13px;
       letter-spacing:.2px;
     }
-    .boot-dots{display:inline-flex; gap:4px; align-items:center}
+    .boot-dots{
+      display:inline-flex;
+      gap:4px;
+      align-items:center;
+    }
     .boot-dots span{
       width:6px;
       height:6px;
@@ -745,50 +776,63 @@
       .boot-bar > i{animation:none; width:55%}
     }
 
-    /* NOTICE POPUP (thông báo giữa web) */
-    .notice{
-      position:fixed;
-      inset:0;
-      z-index:160;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      background:rgba(0,0,0,.72);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-    }
-    .notice.is-open{display:flex}
-    .notice-box{
+    /* ===== Notice banner (1 ảnh + nút xem chi tiết) ===== */
+    .notice-section{padding:14px 0 0}
+    .notice-card{
       position:relative;
-      width:min(720px, 100%);
-      border-radius:22px;
+      border-radius:calc(var(--radius) + 6px);
       border:1px solid rgba(255,255,255,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      box-shadow:var(--shadow);
+      background:linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+      box-shadow:var(--shadow2);
       overflow:hidden;
     }
-    .notice-img{
+    .notice-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(520px 240px at 16% 0%, rgba(124,58,237,.40), transparent 62%),
+        radial-gradient(520px 240px at 92% 10%, rgba(34,211,238,.24), transparent 62%);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .notice-inner{position:relative; z-index:1; padding:14px}
+    .notice-head{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .notice-title{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.2px; font-size:13px;
+    }
+    .notice-badge{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(34,211,238,.30);
+      background:rgba(0,0,0,.18);
+      color:rgba(255,255,255,.82);
+      font-weight:900;
+      font-size:12px;
+    }
+    .notice-frame{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    .notice-frame img{
       display:block;
       width:100%;
       height:auto;
-      max-height:min(78vh, 860px);
-      object-fit:contain;
+      max-height:420px;
+      object-fit:cover;
       background:#000;
     }
-    .notice-close{
-      position:absolute;
-      top:10px;
-      right:10px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(0,0,0,.40);
-      color:#fff;
-      border-radius:14px;
-      padding:10px 12px;
-      font-weight:950;
-      cursor:pointer;
+    .notice-actions{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:12px;
     }
-    .notice-close:hover{background:rgba(0,0,0,.60)}
   </style>
 </head>
 
@@ -796,7 +840,7 @@
   <div class="boot" id="boot" role="status" aria-live="polite" aria-busy="true">
     <div class="boot-card">
       <div class="boot-inner">
-        <img class="boot-logo" src="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" alt="Logo TP DESIGN PPTX" />
+        <img class="boot-logo" src="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" alt="Logo TP DESIGN PPTX">
         <p class="boot-name">TP DESIGN PPTX</p>
         <p class="boot-sub">Slide xịn • Học đỉnh • Điểm cao</p>
         <div class="boot-line">
@@ -813,7 +857,7 @@
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="#top" aria-label="Về đầu trang">
-        <img class="logo-img" src="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" alt="" />
+        <img class="logo-img" src="https://i.ibb.co/mC7tWqp7/F0-B32-A25-E4-D7-4-AAF-85-D0-A13-B80037851.png" alt="">
         <div class="brand-copy">
           <p class="name">TP DESIGN PPTX</p>
           <span class="tagline">Slide xịn • Học đỉnh • Điểm cao</span>
@@ -837,22 +881,49 @@
     </div>
   </header>
 
-  <!-- FIX marquee: nhân đôi nội dung để chạy mượt -->
+  <!-- Thanh chạy (đã nhân đôi nội dung để chạy mượt, không giật) -->
   <div class="announce" aria-hidden="true">
-    <div class="announce-track" id="announceTrack">
+    <div class="announce-track">
       <span>⚙️ Website đang nâng cấp, có thể bị giới hạn một số chức năng. Mong bạn thông cảm!</span>
       <span>⚙️ Website đang nâng cấp, có thể bị giới hạn một số chức năng. Mong bạn thông cảm!</span>
     </div>
   </div>
 
   <main id="top">
+    <!-- Thông báo 1 ảnh + nút xem chi tiết (mở modal) -->
+    <section class="wrap notice-section" aria-label="Thông báo">
+      <div class="notice-card">
+        <div class="notice-inner">
+          <div class="notice-head">
+            <div class="notice-title">Thông báo</div>
+            <div class="notice-badge">Mới</div>
+          </div>
+
+          <div class="notice-frame">
+            <img
+              id="noticeImg"
+              src="https://via.placeholder.com/1400x800?text=THONG+BAO"
+              data-full="https://via.placeholder.com/2000x1200?text=THONG+BAO+CHI+TIET"
+              alt="Ảnh thông báo"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+
+          <div class="notice-actions">
+            <button class="btn btn-primary" type="button" id="btnNoticeDetail">Xem chi tiết</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="wrap hero" id="gioi-thieu" aria-labelledby="hero-heading">
       <div class="hero-card">
         <div class="hero-inner">
           <div class="eyebrow">Catalog trực tuyến</div>
           <h1 class="hero-title" id="hero-heading">Bộ sưu tập slide PowerPoint <em>để tham khảo</em></h1>
           <p class="hero-lead">
-            Website dùng để trưng bày các mẫu slide PowerPoint tham khảo. Nếu bạn cần file hoặc thiết kế theo yêu cầu, vui lòng liên hệ để được hỗ trợ..
+           Website dùng để trưng bày các mẫu slide PowerPoint tham khảo. Nếu bạn cần file hoặc thiết kế theo yêu cầu, vui lòng liên hệ để được hỗ trợ..
           </p>
           <div class="disclaimer" role="note">
             Lưu ý: Website không hỗ trợ đặt hàng hoặc thanh toán trực tiếp. Mọi trao đổi được thực hiện qua kênh liên hệ riêng.
@@ -880,7 +951,7 @@
         <div class="tools">
           <label class="search" title="Tìm theo tên hoặc mô tả">
             <span aria-hidden="true" style="opacity:.55;font-weight:900">⌕</span>
-            <input id="q" type="search" inputmode="search" autocomplete="off" placeholder="Tìm nhanh trong kho…" />
+            <input id="q" type="search" inputmode="search" autocomplete="off" placeholder="Tìm nhanh trong kho…">
           </label>
         </div>
       </div>
@@ -975,7 +1046,6 @@
       </div>
     </div>
     <div class="wrap foot-bottom">© <span id="y"></span> TP DESIGN PPTX</div>
-
     <div class="wrap dmca-wrap" aria-label="DMCA.com Protection Status">
       <a
         href="https://www.dmca.com/Protection/Status.aspx?ID=b9c20043-8e2a-4f7f-906a-90265b577d3c"
@@ -1007,7 +1077,7 @@
         <div class="img-wrap">
           <button class="slide-nav prev" type="button" id="btnPrev" aria-label="Ảnh trước">‹</button>
           <button class="slide-nav next" type="button" id="btnNext" aria-label="Ảnh sau">›</button>
-          <img id="mainImg" alt="" />
+          <img id="mainImg" alt="">
         </div>
 
         <div class="meta">
@@ -1018,18 +1088,6 @@
 
         <div class="thumbs" id="thumbs" aria-label="Ảnh khác"></div>
       </div>
-    </div>
-  </div>
-
-  <!-- THÔNG BÁO GIỮA WEB (đổi link ảnh tại src) -->
-  <div class="notice" id="notice" aria-hidden="true">
-    <div class="notice-box" role="dialog" aria-modal="true" aria-label="Thông báo">
-      <button class="notice-close" type="button" id="noticeClose" aria-label="Đóng thông báo">✕</button>
-      <img
-        class="notice-img"
-        src="https://via.placeholder.com/900x1200?text=Thong+bao"
-        alt="Thông báo"
-      />
     </div>
   </div>
 
@@ -1344,26 +1402,28 @@
       }
     });
 
-    /* NOTICE popup */
-    const noticeEl = document.getElementById("notice");
-    const noticeCloseBtn = document.getElementById("noticeClose");
+    // Nút "Xem chi tiết" của ảnh thông báo (mở modal sẵn có)
+    (function initNoticeDetail(){
+      const btn = document.getElementById("btnNoticeDetail");
+      const img = document.getElementById("noticeImg");
+      if(!btn || !img) return;
 
-    function setNoticeOpen(open){
-      if(open){
-        noticeEl.classList.add("is-open");
-        noticeEl.setAttribute("aria-hidden","false");
-      }else{
-        noticeEl.classList.remove("is-open");
-        noticeEl.setAttribute("aria-hidden","true");
-      }
-    }
+      btn.addEventListener("click", () => {
+        const full = img.dataset.full || img.src;
 
-    // Mở thông báo khi vào web (nếu không muốn tự mở thì đổi true -> false)
-    setNoticeOpen(true);
+        modalImgs = [full];
+        modalIndex = 0;
 
-    noticeCloseBtn.addEventListener("click", () => setNoticeOpen(false));
-    noticeEl.addEventListener("click", (e) => { if(e.target === noticeEl) setNoticeOpen(false); });
-    document.addEventListener("keydown", (e) => { if(e.key === "Escape") setNoticeOpen(false); });
+        document.getElementById("title").textContent = "Thông báo";
+        document.getElementById("desc").textContent = "";
+        document.getElementById("price").style.display = "none";
+        document.getElementById("price").textContent = "";
+
+        updateModalImage();
+        renderThumbs();
+        setModalOpen(true);
+      });
+    })();
 
     load();
   </script>
