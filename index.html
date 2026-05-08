@@ -668,7 +668,9 @@
   </div>
 
   <script>
-    const API = "https://script.google.com/macros/s/AKfycbwyE-DhPgeHFPOSUCdpsPiP_jQg2n-dELsLtfUl-wJPl4i09kwpyFstU56416RtlsNQ/exec";
+    const API_POWERPOINT = "https://script.google.com/macros/s/AKfycbwyE-DhPgeHFPOSUCdpsPiP_jQg2n-dELsLtfUl-wJPl4i09kwpyFstU56416RtlsNQ/exec";
+    // API Poster rieng: du lieu bat dau tu cot A (ten, mota, gia, anh...)
+    const API_POSTER = "https://script.google.com/macros/s/AKfycbwUBQSalpOQTztq2a1SYgfzdlqygDv4VLIFO8MxR1sYDmOCD_lamHMJbUJCwRMVtDiI/exec";
     const MIN_BOOT_MS = 1400;
     const bootStart = performance.now();
 
@@ -695,6 +697,24 @@
         if(Object.prototype.hasOwnProperty.call(obj, k) && obj[k] != null && String(obj[k]).trim()){
           return obj[k];
         }
+      }
+      return "";
+    }
+
+    function normalizeKeyName(v){
+      return String(v || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function pickFieldLoose(obj, aliases){
+      if(!obj || typeof obj !== "object") return "";
+      const aliasSet = new Set((aliases || []).map(normalizeKeyName));
+      for(const [k, v] of Object.entries(obj)){
+        const nk = normalizeKeyName(k);
+        if(aliasSet.has(nk) && v != null && String(v).trim()) return v;
       }
       return "";
     }
@@ -733,10 +753,10 @@
 
         if(row && typeof row === "object"){
           const ppt = {
-            ten: safeText(pickField(row, ["ten","name","title","ten_ppt","powerpoint_ten"])),
-            mota: safeText(pickField(row, ["mota","mo_ta","desc","description","mota_ppt"])),
-            gia: safeText(pickField(row, ["gia","price","gia_ppt"])),
-            anh: safeText(pickField(row, ["anh","image","images","url_anh","anh_ppt"])),
+            ten: safeText(pickField(row, ["ten","name","title","ten_ppt","powerpoint_ten"]) || pickFieldLoose(row, ["ten","tenppt","tenpowerpoint","maupowerpoint"])),
+            mota: safeText(pickField(row, ["mota","mo_ta","desc","description","mota_ppt"]) || pickFieldLoose(row, ["mota","motappt","motapowerpoint","mota","mo ta"])),
+            gia: safeText(pickField(row, ["gia","price","gia_ppt"]) || pickFieldLoose(row, ["gia","giappt","giapowerpoint"])),
+            anh: safeText(pickField(row, ["anh","image","images","url_anh","anh_ppt"]) || pickFieldLoose(row, ["anh","anhppt","anhpowerpoint","hinhanh","hinh"])),
             loai: normalizeType(pickField(row, ["loai","type"]) || "powerpoint")
           };
           if(ppt.ten || ppt.mota || ppt.anh) out.push(ppt);
@@ -744,20 +764,26 @@
           // Poster tu cot F tro di trong Sheet, thuong map ve cac key ten_poster/mota_poster/...
           const poster = {
             ten: safeText(pickField(row, [
-              "ten_poster","poster_ten","poster_name","poster_title","tenposter","f","poster_f"
-            ])),
+              "ten_poster","poster_ten","poster_name","poster_title","tenposter","poster_f","f","F"
+            ]) || pickFieldLoose(row, ["tenposter","tenposterf","posterf","cotf","f"])),
             mota: safeText(pickField(row, [
-              "mota_poster","poster_mota","poster_desc","poster_description","motaposter","g","poster_g"
-            ])),
+              "mota_poster","poster_mota","poster_desc","poster_description","motaposter","poster_g","g","G"
+            ]) || pickFieldLoose(row, ["motaposter","motaposterg","posterg","cotg","g"])),
             gia: safeText(pickField(row, [
-              "gia_poster","poster_gia","poster_price","giaposter","h","poster_h"
-            ])),
+              "gia_poster","poster_gia","poster_price","giaposter","poster_h","h","H"
+            ]) || pickFieldLoose(row, ["giaposter","posterh","coth","h"])),
             anh: safeText(pickField(row, [
-              "anh_poster","poster_anh","poster_image","poster_images","anhposter","i","poster_i"
-            ])),
+              "anh_poster","poster_anh","poster_image","poster_images","anhposter","poster_i","i","I"
+            ]) || pickFieldLoose(row, ["anhposter","posteri","coti","i"])),
             loai: "poster"
           };
-          if(poster.ten || poster.mota || poster.anh) out.push(poster);
+
+          // Chi them poster khi co du lieu poster-rieng de tranh bi dong bo nham tu PowerPoint
+          const hasPosterSpecific =
+            !!pickField(row, ["ten_poster","mota_poster","gia_poster","anh_poster","poster_f","poster_g","poster_h","poster_i","f","g","h","i","F","G","H","I"]) ||
+            !!pickFieldLoose(row, ["tenposter","motaposter","giaposter","anhposter","posterf","posterg","posterh","posteri","cotf","cotg","coth","coti","f","g","h","i"]);
+
+          if(hasPosterSpecific && (poster.ten || poster.mota || poster.anh)) out.push(poster);
         }
       }
       return out;
@@ -765,6 +791,27 @@
 
     function parseImgs(anh){
       return safeText(anh).split(";").map(s => s.trim()).filter(Boolean).filter(isHttpUrl);
+    }
+
+    function normalizeApiItems(list, forcedType){
+      if(!Array.isArray(list)) return [];
+      return list.map(item => normalizeRecord(item, forcedType)).filter(x => x.ten || x.mota || x.anh);
+    }
+
+    function withTs(url, ts){
+      return url + (url.includes("?") ? "&" : "?") + "t=" + ts;
+    }
+
+    async function fetchJsonWithTimeout(url, timeoutMs){
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try{
+        const res = await fetch(url, { cache: "no-store", signal: controller.signal });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        return await res.json();
+      }finally{
+        clearTimeout(timer);
+      }
     }
 
     function setBootProgress(percent, text){
@@ -992,13 +1039,23 @@
 
       try{
         setBootProgress(22, "Đang kết nối dữ liệu...");
-        const res = await fetch(API + "?t=" + Date.now(), { cache: "no-store" });
-        if(!res.ok) throw new Error("HTTP " + res.status);
+        const ts = Date.now();
+        const [pptResult, posterResult] = await Promise.allSettled([
+          fetchJsonWithTimeout(withTs(API_POWERPOINT, ts), 12000),
+          fetchJsonWithTimeout(withTs(API_POSTER, ts), 12000)
+        ]);
 
         setBootProgress(48, "Đang xử lý dữ liệu...");
-        const data = await res.json();
-        if(!Array.isArray(data)) throw new Error("API không trả về mảng JSON");
-        current = splitRowsToCatalog(data);
+        const pptData = pptResult.status === "fulfilled" ? pptResult.value : [];
+        const posterData = posterResult.status === "fulfilled" ? posterResult.value : [];
+
+        const pptItems = normalizeApiItems(pptData, "powerpoint");
+        const posterItems = normalizeApiItems(posterData, "poster");
+        current = [...pptItems, ...posterItems];
+
+        if(pptResult.status === "rejected" && posterResult.status === "rejected"){
+          throw new Error("Khong ket noi duoc ca 2 API");
+        }
 
         setBootProgress(68, "Đang tải ảnh xem trước...");
         await preloadImagesFromData(current);
