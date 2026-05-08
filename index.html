@@ -159,6 +159,47 @@
     }
     .pill.good{border-color:rgba(52,211,153,.35)}
     .pill.bad{border-color:rgba(251,113,133,.40)}
+    .status-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+      margin-left:8px;
+      min-width:98px;
+    }
+    .status-dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.55);
+      box-shadow:0 0 0 4px rgba(255,255,255,.08);
+      flex:0 0 auto;
+    }
+    .status-btn.ok{
+      border-color:rgba(52,211,153,.55);
+      background:rgba(52,211,153,.20);
+      color:#d1fae5;
+    }
+    .status-btn.ok .status-dot{
+      background:#34d399;
+      box-shadow:0 0 0 4px rgba(52,211,153,.18);
+    }
+    .status-btn.err{
+      border-color:rgba(251,113,133,.55);
+      background:rgba(251,113,133,.20);
+      color:#ffe4e6;
+    }
+    .status-btn.err .status-dot{
+      background:#fb7185;
+      box-shadow:0 0 0 4px rgba(251,113,133,.18);
+    }
 
     .section{padding:18px 0 10px}
     .section-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between}
@@ -187,14 +228,121 @@
     .search input{width:100%;border:0;outline:none;background:transparent;color:#fff;font-size:13px;font-family:inherit}
 
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:16px}
+    .grid-wrap{
+      position:relative;
+      margin-top:16px;
+    }
+    .grid-wrap.is-refreshing #grid{
+      filter:grayscale(.75) brightness(.75);
+      opacity:.75;
+      transform:scale(.995);
+      transition:filter .2s ease, opacity .2s ease, transform .2s ease;
+      pointer-events:none;
+    }
+    .refresh-mask{
+      position:absolute;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      border-radius:18px;
+      background:rgba(6,10,22,.55);
+      backdrop-filter:blur(2px);
+      -webkit-backdrop-filter:blur(2px);
+      border:1px solid rgba(255,255,255,.14);
+      z-index:6;
+    }
+    .grid-wrap.is-refreshing .refresh-mask{display:flex}
+    .refresh-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.20);
+      font-size:13px;
+      font-weight:900;
+      color:#fff;
+      box-shadow:0 10px 24px rgba(0,0,0,.24);
+    }
+    .refresh-spin{
+      width:15px;
+      height:15px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.35);
+      border-top-color:#a5f3fc;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
     .card{
+      --mx:50%;
+      --my:50%;
       border-radius:20px;overflow:hidden;cursor:pointer;
       border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); box-shadow:var(--shadow2);
-      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      transform-style:preserve-3d;
+      transition:transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      position:relative;
+      isolation:isolate;
     }
-    .card:hover{transform:translateY(-8px) scale(1.01);border-color:rgba(255,255,255,.18);box-shadow:0 20px 45px rgba(0,0,0,.35)}
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      pointer-events:none;
+      z-index:1;
+      background:
+        radial-gradient(260px circle at var(--mx) var(--my), rgba(255,255,255,.18), transparent 55%),
+        linear-gradient(130deg, rgba(124,58,237,.14), transparent 38%, rgba(34,211,238,.12));
+      opacity:0;
+      transition:opacity .22s ease;
+    }
+    .card:hover{
+      transform:translateY(-10px) scale(1.015);
+      border-color:rgba(255,255,255,.20);
+      box-shadow:0 24px 56px rgba(0,0,0,.40);
+      background:rgba(255,255,255,.06);
+    }
+    .card:hover::before{opacity:1}
     .card-media{aspect-ratio:16/10;background:rgba(255,255,255,.06)}
-    .card-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .card-media img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .35s ease, filter .35s ease;
+      transform-origin:center;
+    }
+    .card-shade{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent 42%, rgba(0,0,0,.62));
+      opacity:.55;
+      transition:opacity .2s ease;
+      pointer-events:none;
+      z-index:2;
+    }
+    .card:hover .card-shade{opacity:.85}
+    .card-cta{
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      z-index:3;
+      font-size:12px;
+      font-weight:900;
+      padding:9px 11px;
+      border-radius:999px;
+      color:#061016;
+      border:1px solid rgba(255,255,255,.22);
+      background:linear-gradient(135deg, #e0e7ff, #a5f3fc);
+      opacity:0;
+      transform:translateY(6px);
+      transition:opacity .2s ease, transform .2s ease;
+      pointer-events:none;
+    }
+    .card:hover .card-cta{opacity:1;transform:translateY(0)}
+    .card:hover .card-media img{
+      transform:scale(1.06);
+      filter:saturate(1.06) contrast(1.03);
+    }
     .card-body{padding:13px}
     .card-body h3{margin:0;font-size:15px;font-weight:850}
     .card-body p{
@@ -321,6 +469,9 @@
       .card-enter{animation:none;opacity:1;transform:none}
       .boot-dots span{animation:none; opacity:.75}
       .boot-bar > i{animation:none; width:55%}
+      .card, .card:hover{transform:none}
+      .card::before{display:none}
+      .card-media img, .card:hover .card-media img{transform:none;filter:none}
     }
   </style>
 </head>
@@ -394,6 +545,7 @@
             <div>
               <span class="pill" id="countPill">Đang tải…</span>
               <span class="pill" id="apiPill">API: kiểm tra…</span>
+              <span class="status-btn" id="apiStatusBtn"><i class="status-dot" aria-hidden="true"></i><span id="apiStatusText">Đang chạy</span></span>
             </div>
             <button class="btn" type="button" id="btnReload">↻ Làm mới</button>
           </div>
@@ -418,7 +570,12 @@
           </label>
         </div>
       </div>
-      <div id="grid" class="grid"></div>
+      <div class="grid-wrap" id="gridWrap">
+        <div id="grid" class="grid"></div>
+        <div class="refresh-mask" id="refreshMask" aria-hidden="true">
+          <div class="refresh-chip"><i class="refresh-spin" aria-hidden="true"></i>Đang làm mới dữ liệu...</div>
+        </div>
+      </div>
       <div id="empty" class="empty" style="display:none"></div>
     </section>
 
@@ -643,6 +800,18 @@
       el.innerHTML = "";
     }
 
+    function setRefreshingState(isRefreshing){
+      const wrap = document.getElementById("gridWrap");
+      const btn = document.getElementById("btnReload");
+      if(wrap) wrap.classList.toggle("is-refreshing", !!isRefreshing);
+      if(btn){
+        btn.disabled = !!isRefreshing;
+        btn.style.opacity = isRefreshing ? ".7" : "";
+        btn.style.cursor = isRefreshing ? "not-allowed" : "";
+        btn.textContent = isRefreshing ? "⏳ Đang làm mới..." : "↻ Làm mới";
+      }
+    }
+
     function filteredIndexes(){
       const q = safeText(document.getElementById("q").value).trim().toLowerCase();
       return current
@@ -679,7 +848,7 @@
         card.className = "card reveal card-enter";
         card.style.setProperty("--delay", `${Math.min(order * 55, 520)}ms`);
         card.innerHTML =
-          `<div class="card-media"><img src="${first}" alt="${safeText(sp.ten)}" loading="lazy" decoding="async"></div>
+          `<div class="card-media"><img src="${first}" alt="${safeText(sp.ten)}" loading="lazy" decoding="async"><div class="card-shade"></div><div class="card-cta">Xem chi tiết</div></div>
            <div class="card-body"><h3>${safeText(sp.ten)}</h3><p>${safeText(sp.mota)}</p></div>`;
         card.addEventListener("click", () => openDetail(i));
         frag.appendChild(card);
@@ -691,6 +860,33 @@
       document.getElementById("catalog-title").textContent = `Mẫu ${activeLabel}`;
 
       initReveal();
+      initCardHoverFX();
+    }
+
+    function initCardHoverFX(){
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        card.addEventListener("pointermove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const px = Math.max(0, Math.min(rect.width, x));
+          const py = Math.max(0, Math.min(rect.height, y));
+
+          const rx = ((py / rect.height) - 0.5) * -8;
+          const ry = ((px / rect.width) - 0.5) * 10;
+
+          card.style.setProperty("--mx", `${px}px`);
+          card.style.setProperty("--my", `${py}px`);
+          card.style.transform = `translateY(-10px) scale(1.015) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+        });
+
+        card.addEventListener("pointerleave", () => {
+          card.style.removeProperty("--mx");
+          card.style.removeProperty("--my");
+          card.style.transform = "";
+        });
+      });
     }
 
     function syncNavType(){
@@ -780,10 +976,19 @@
       els.forEach(el => io.observe(el));
     }
 
-    async function load(){
+    async function load(isManualRefresh = false){
+      if(isManualRefresh){
+        setRefreshingState(true);
+      }
       setBootProgress(8, "Khởi tạo giao diện...");
       document.getElementById("apiPill").textContent = "API: đang gọi…";
       document.getElementById("apiPill").className = "pill";
+      const statusBtn = document.getElementById("apiStatusBtn");
+      if(statusBtn){
+        statusBtn.className = "status-btn";
+        const statusText = document.getElementById("apiStatusText");
+        if(statusText) statusText.textContent = "Đang chạy";
+      }
 
       try{
         setBootProgress(22, "Đang kết nối dữ liệu...");
@@ -801,6 +1006,11 @@
         setBootProgress(86, "Đang dựng giao diện...");
         document.getElementById("apiPill").textContent = "API: OK";
         document.getElementById("apiPill").className = "pill good";
+        if(statusBtn){
+          statusBtn.className = "status-btn ok";
+          const statusText = document.getElementById("apiStatusText");
+          if(statusText) statusText.textContent = "API OK";
+        }
 
         renderGrid();
         initReveal();
@@ -808,13 +1018,22 @@
       }catch(err){
         document.getElementById("apiPill").textContent = "API: lỗi";
         document.getElementById("apiPill").className = "pill bad";
+        if(statusBtn){
+          statusBtn.className = "status-btn err";
+          const statusText = document.getElementById("apiStatusText");
+          if(statusText) statusText.textContent = "API Lỗi";
+        }
         setEmpty("<strong>Không tải được dữ liệu API.</strong><br>" + safeText(err.message || err));
         await finishBoot();
+      }finally{
+        if(isManualRefresh){
+          setRefreshingState(false);
+        }
       }
     }
 
     document.getElementById("q").addEventListener("input", renderGrid);
-    document.getElementById("btnReload").addEventListener("click", load);
+    document.getElementById("btnReload").addEventListener("click", () => load(true));
 
     document.querySelectorAll(".sw-btn").forEach(btn => {
       btn.addEventListener("click", () => {
