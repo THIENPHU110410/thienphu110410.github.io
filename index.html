@@ -49,7 +49,7 @@
     }
     body::before{
       content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.35;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFre[...]
       mix-blend-mode:overlay;
     }
 
@@ -115,8 +115,9 @@
     .notice-frame{
       border-radius:18px; border:1px solid rgba(255,255,255,.16); background:rgba(0,0,0,.28);
       overflow:hidden; min-height:180px; display:flex; align-items:center; justify-content:center;
+      padding: 10px;
     }
-    .notice-frame img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;background:#000}
+    .notice-frame img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain;background:#000}
     .notice-actions{display:flex;justify-content:flex-end;margin-top:12px}
 
     .btn{
@@ -525,8 +526,8 @@
           </div>
           <div class="notice-frame">
             <img id="noticeImg"
-                 src="CHƯA CÓ THÔNG BÁO!"
-                 data-full="CHƯA CÓ THÔNG BÁO!"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23222' width='400' height='300'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23888'%3ECHƯA CÓ THÔNG BÁO%3C/text%3E%3C/svg%3E"
+                 data-full="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23222' width='400' height='300'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23888'%3ECHƯA CÓ THÔNG BÁO%3C/text%3E%3C/svg%3E"
                  alt="Ảnh thông báo" loading="lazy" decoding="async">
           </div>
           <div class="notice-actions">
@@ -583,18 +584,18 @@
       <div class="legal-card">
         <h2 id="terms-title">Điều khoản sử dụng</h2>
         <p class="muted-strong">
-          Các điều khoản và điều kiện sau đây (gọi chung là “Điều khoản sử dụng”) quy định việc truy cập và sử dụng thông tin hiển thị trên website <span class="muted-strong">TP DESIGN PPTX</span> tại địa chỉ <span class="muted-strong">https://thienphu110410.github.io/</span>.
+          Các điều khoản và điều kiện sau đây (gọi chung là "Điều khoản sử dụng") quy định việc truy cập và sử dụng thông tin hiển thị trên website[...]
         </p>
 
         <h3>1. Chấp nhận các điều khoản sử dụng</h3>
-        <p>Bằng việc truy cập và sử dụng website, bạn xác nhận đã đọc, hiểu và đồng ý bị ràng buộc bởi các Điều khoản sử dụng này. Nếu bạn không đồng ý, vui lòng ngừng truy cập và sử dụng website.</p>
+        <p>Bằng việc truy cập và sử dụng website, bạn xác nhận đã đọc, hiểu và đồng ý bị ràng buộc bởi các Điều khoản sử dụng này. Nếu bạn không[...]
 
         <h3>2. Truy cập</h3>
-        <p>Chúng tôi bảo lưu quyền thay đổi, tạm ngưng hoặc chấm dứt bất kỳ phần nào của website mà không cần báo trước, trong phạm vi pháp luật cho phép.</p>
-        <p>Nếu website có tính năng yêu cầu tài khoản/mật khẩu trong tương lai, bạn có trách nhiệm bảo mật thông tin đăng nhập và thông báo ngay khi phát hiện truy cập trái phép.</p>
+        <p>Chúng tôi bảo lưu quyền thay đổi, tạm ngưng hoặc chấm dứt bất kỳ phần nào của website mà không cần báo trước, trong phạm vi pháp luật cho phép[...]
+        <p>Nếu website có tính năng yêu cầu tài khoản/mật khẩu trong tương lai, bạn có trách nhiệm bảo mật thông tin đăng nhập và thông báo ngay khi phát hiệ[...]
 
         <h3>3. Quyền sở hữu trí tuệ</h3>
-        <p>Toàn bộ nội dung hiển thị trên website (bao gồm nhưng không giới hạn: hình ảnh minh họa, mô tả, bố cục giao diện) thuộc quyền sở hữu của chủ sở hữu nội dung, trừ khi có ghi chú khác.</p>
+        <p>Toàn bộ nội dung hiển thị trên website (bao gồm nhưng không giới hạn: hình ảnh minh họa, mô tả, bố cục giao diện) thuộc quyền sở hữu của chủ[...]
         <p>Bạn được phép:</p>
         <ul>
           <li>Xem thông tin và hình ảnh minh họa cho mục đích tham khảo cá nhân.</li>
@@ -604,16 +605,16 @@
           <li>Sao chép, phân phối, chỉnh sửa, hiển thị công khai, tái xuất bản, tải về để kinh doanh lại, hoặc sử dụng thương mại trái phép.</li>
           <li>Sử dụng nội dung cho mục đích vi phạm pháp luật, xâm phạm quyền lợi hợp pháp của cá nhân/tổ chức khác.</li>
         </ul>
-        <p>Lưu ý: đoạn quy định chi tiết về “sản phẩm PowerPoint mẫu &amp; tài nguyên” trong văn bản bạn cung cấp có thể chứa các điều khoản đặc thù của bên thứ ba. Phần này đã được tổng hợp lại cho website <span class="muted-strong">TP DESIGN PPTX</span> theo hướng minh bạch và tránh xung đột nội dung.</p>
+        <p>Lưu ý: đoạn quy định chi tiết về "sản phẩm PowerPoint mẫu &amp; tài nguyên" trong văn bản bạn cung cấp có thể chứa các điều khoản đặc thù [...]
 
         <h3>4. Thương hiệu</h3>
-        <p>Bạn không được sử dụng nhãn hiệu/tên thương mại “TP DESIGN PPTX” hoặc các yếu tố nhận diện thương hiệu liên quan cho mục đích gây nhầm lẫn hoặc quảng bá sai nếu không có sự cho phép bằng văn bản.</p>
+        <p>Bạn không được sử dụng nhãn hiệu/tên thương mại "TP DESIGN PPTX" hoặc các yếu tố nhận diện thương hiệu liên quan cho mục đích gây nhầm l[...]
 
         <h3>5. Miễn trừ trách nhiệm</h3>
-        <p>Website hiển thị thông tin theo dữ liệu cập nhật từ hệ thống backend (Google Apps Script/Google Sheet). Chúng tôi nỗ lực đảm bảo tính chính xác nhưng không cam kết tuyệt đối về sự đầy đủ, liên tục hoặc không lỗi.</p>
+        <p>Website hiển thị thông tin theo dữ liệu cập nhật từ hệ thống backend (Google Apps Script/Google Sheet). Chúng tôi nỗ lực đảm bảo tính chính xác nhưng [...]
 
         <h3>6. Liên hệ</h3>
-        <p>Mọi yêu cầu liên quan đến nội dung/điều khoản, vui lòng liên hệ: Zalo: <a href="https://zalo.me/84773181186" target="_blank" rel="noopener noreferrer">https://zalo.me/84773181186</a> — Email: <a href="mailto:dphu7819@gmail.com">dphu7819@gmail.com</a></p>
+        <p>Mọi yêu cầu liên quan đến nội dung/điều khoản, vui lòng liên hệ: Zalo: <a href="https://zalo.me/84773181186" target="_blank" rel="noopener noreferrer">https://zalo.[...]
       </div>
     </section>
   </main>
@@ -622,7 +623,7 @@
     <div class="wrap foot-grid">
       <div>
         <p class="foot-brand">TP DESIGN PPTX</p>
-        <p class="foot-note">Trang hiển thị mẫu thiết kế để tham khảo. Không cung cấp chức năng đặt mua, thanh toán hoặc giao kết hợp đồng trực tuyến trên website.</p>
+        <p class="foot-note">Trang hiển thị mẫu thiết kế để tham khảo. Không cung cấp chức năng đặt mua, thanh toán hoặc giao kết hợp đồng trực tuyến trên w[...]
       </div>
       <div>
         <h4>Điều hướng</h4>
@@ -999,137 +1000,112 @@
         const imgs = parseImgs(sp.anh);
         if(imgs[0]) urls.push(imgs[0]);
       }
-      await Promise.all(urls.slice(0, 24).map(src => new Promise(resolve => {
-        const im = new Image();
-        im.onload = im.onerror = resolve;
-        im.src = src;
-      })));
+      for(const url of urls.slice(0, 3)){
+        const img = new Image();
+        img.src = url;
+      }
     }
 
-    function initReveal(){
-      const els = document.querySelectorAll(".reveal");
-      if(!("IntersectionObserver" in window)){
-        els.forEach(el => el.classList.add("in"));
-        return;
-      }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add("in");
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      els.forEach(el => io.observe(el));
-    }
+    async function initData(){
+      setBootProgress(10, "Đang tải dữ liệu…");
+      let allItems = [];
+      let hasErr = false;
 
-    async function load(isManualRefresh = false){
-      if(isManualRefresh){
-        setRefreshingState(true);
-      }
-      setBootProgress(8, "Khởi tạo giao diện...");
-      document.getElementById("apiPill").textContent = "API: đang gọi…";
-      document.getElementById("apiPill").className = "pill";
-      const statusBtn = document.getElementById("apiStatusBtn");
-      if(statusBtn){
-        statusBtn.className = "status-btn";
-        const statusText = document.getElementById("apiStatusText");
-        if(statusText) statusText.textContent = "Đang chạy";
+      try{
+        const pptData = await fetchJsonWithTimeout(API_POWERPOINT, 8000);
+        const pptRows = Array.isArray(pptData) ? pptData : (pptData?.data || []);
+        allItems.push(...normalizeApiItems(splitRowsToCatalog(pptRows), "powerpoint"));
+        const btn = document.getElementById("apiPill");
+        if(btn) btn.textContent = "✓ PowerPoint OK";
+      }catch(e){
+        console.warn("PowerPoint API error:", e);
+        hasErr = true;
+        const btn = document.getElementById("apiPill");
+        if(btn) btn.textContent = "✗ PowerPoint lỗi";
       }
 
       try{
-        setBootProgress(22, "Đang kết nối dữ liệu...");
-        const ts = Date.now();
-        const [pptResult, posterResult] = await Promise.allSettled([
-          fetchJsonWithTimeout(withTs(API_POWERPOINT, ts), 12000),
-          fetchJsonWithTimeout(withTs(API_POSTER, ts), 12000)
-        ]);
+        const posterData = await fetchJsonWithTimeout(API_POSTER, 8000);
+        const posterRows = Array.isArray(posterData) ? posterData : (posterData?.data || []);
+        allItems.push(...normalizeApiItems(splitRowsToCatalog(posterRows), "poster"));
+        const btn = document.getElementById("apiPill");
+        if(btn && btn.textContent === "✓ PowerPoint OK") btn.textContent = "✓ Toàn bộ OK";
+      }catch(e){
+        console.warn("Poster API error:", e);
+        hasErr = true;
+      }
 
-        setBootProgress(48, "Đang xử lý dữ liệu...");
-        const pptData = pptResult.status === "fulfilled" ? pptResult.value : [];
-        const posterData = posterResult.status === "fulfilled" ? posterResult.value : [];
+      current = allItems;
 
-        const pptItems = normalizeApiItems(pptData, "powerpoint");
-        const posterItems = normalizeApiItems(posterData, "poster");
-        current = [...pptItems, ...posterItems];
-
-        if(pptResult.status === "rejected" && posterResult.status === "rejected"){
-          throw new Error("Khong ket noi duoc ca 2 API");
-        }
-
-        setBootProgress(68, "Đang tải ảnh xem trước...");
-        await preloadImagesFromData(current);
-
-        setBootProgress(86, "Đang dựng giao diện...");
-        document.getElementById("apiPill").textContent = "API: OK";
-        document.getElementById("apiPill").className = "pill good";
-        if(statusBtn){
-          statusBtn.className = "status-btn ok";
-          const statusText = document.getElementById("apiStatusText");
-          if(statusText) statusText.textContent = "API OK";
-        }
-
-        renderGrid();
-        initReveal();
-        await finishBoot();
-      }catch(err){
-        document.getElementById("apiPill").textContent = "API: lỗi";
-        document.getElementById("apiPill").className = "pill bad";
-        if(statusBtn){
+      const statusBtn = document.getElementById("apiStatusBtn");
+      const statusText = document.getElementById("apiStatusText");
+      if(statusBtn && statusText){
+        if(hasErr){
           statusBtn.className = "status-btn err";
-          const statusText = document.getElementById("apiStatusText");
-          if(statusText) statusText.textContent = "API Lỗi";
-        }
-        setEmpty("<strong>Không tải được dữ liệu API.</strong><br>" + safeText(err.message || err));
-        await finishBoot();
-      }finally{
-        if(isManualRefresh){
-          setRefreshingState(false);
+          statusText.textContent = "Lỗi";
+        }else{
+          statusBtn.className = "status-btn ok";
+          statusText.textContent = "OK";
         }
       }
+
+      setBootProgress(80, "Vẽ giao diện…");
+      activeType = "powerpoint";
+      syncNavType();
+      renderGrid();
+      preloadImagesFromData(allItems);
+      initReveal();
+      setupEventListeners();
+
+      await finishBoot();
     }
 
-    document.getElementById("q").addEventListener("input", renderGrid);
-    document.getElementById("btnReload").addEventListener("click", () => load(true));
+    function initReveal(){
+      const reveals = document.querySelectorAll(".reveal:not(.in)");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if(e.isIntersecting){
+            e.target.classList.add("in");
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+    }
 
-    document.querySelectorAll(".sw-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        activeType = btn.dataset.type || "powerpoint";
-        syncNavType();
-        renderGrid();
+    function setupEventListeners(){
+      document.getElementById("btnReload")?.addEventListener("click", async () => {
+        setRefreshingState(true);
+        await wait(600);
+        await initData();
+        setRefreshingState(false);
       });
-    });
 
-    document.querySelectorAll("[data-nav-type]").forEach(link => {
-      link.addEventListener("click", () => {
-        activeType = link.dataset.navType || "powerpoint";
-        syncNavType();
-        renderGrid();
+      document.getElementById("q")?.addEventListener("input", renderGrid);
+
+      document.querySelectorAll(".sw-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeType = btn.dataset.type || "powerpoint";
+          syncNavType();
+          renderGrid();
+        });
       });
-    });
 
-    document.getElementById("btnClose").addEventListener("click", () => setModalOpen(false));
-    document.getElementById("modal").addEventListener("click", (e) => {
-      if(e.target.id === "modal") setModalOpen(false);
-    });
+      document.querySelectorAll("[data-nav-type]").forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          activeType = link.dataset.navType || "powerpoint";
+          syncNavType();
+          renderGrid();
+        });
+      });
 
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape") setModalOpen(false);
-    });
+      document.getElementById("btnClose")?.addEventListener("click", () => setModalOpen(false));
+      document.getElementById("modal")?.addEventListener("click", (e) => {
+        if(e.target === e.currentTarget) setModalOpen(false);
+      });
+    }
 
-    document.getElementById("btnNoticeDetail").addEventListener("click", () => {
-      const img = document.getElementById("noticeImg");
-      modalImgs = [img.dataset.full || img.src];
-      modalIndex = 0;
-      document.getElementById("modalTitle").textContent = "Thông báo";
-      document.getElementById("title").textContent = "Thông báo";
-      document.getElementById("desc").textContent = "";
-      updateModalImage();
-      renderThumbs();
-      setModalOpen(true);
-    });
-
-    load();
+    initData();
   </script>
 </body>
 </html>
