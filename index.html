@@ -231,23 +231,30 @@
 
     /* ── Toast cảnh báo bảo vệ ảnh ── */
     .protect-toast{
-      position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+      position:fixed;top:50%;left:50%;
+      transform:translate(-50%,-50%) scale(.88);
       z-index:9999;
-      display:flex;align-items:center;gap:10px;
-      padding:12px 18px;border-radius:14px;
-      background:linear-gradient(135deg,rgba(251,113,133,.18),rgba(239,68,68,.12));
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+      padding:28px 36px;border-radius:24px;
+      background:linear-gradient(135deg,rgba(15,5,10,.95),rgba(30,8,12,.97));
       border:1px solid rgba(251,113,133,.45);
-      box-shadow:0 8px 32px rgba(0,0,0,.45);
-      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-      color:#fff;font-size:13px;font-weight:700;font-family:var(--font);
+      box-shadow:0 24px 80px rgba(0,0,0,.75),0 0 0 1px rgba(251,113,133,.15);
+      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      color:#fff;font-family:var(--font);text-align:center;
       opacity:0;pointer-events:none;
-      transition:opacity .25s ease,transform .25s ease;
-      white-space:nowrap;
+      transition:opacity .22s ease,transform .22s ease;
     }
-    .protect-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    .protect-toast-icon{font-size:20px;flex-shrink:0}
-    .protect-toast-text b{display:block;font-size:13px;font-weight:900;color:#fca5a5}
-    .protect-toast-text span{font-size:12px;color:rgba(255,255,255,.68);font-weight:600}
+    .protect-toast.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+    .protect-toast-icon{font-size:42px;line-height:1}
+    .protect-toast-text b{display:block;font-size:16px;font-weight:900;color:#fca5a5;margin-bottom:4px}
+    .protect-toast-text span{font-size:13px;color:rgba(255,255,255,.65);font-weight:600}
+
+    .protect-overlay{
+      position:fixed;inset:0;z-index:9998;
+      background:rgba(0,0,0,.55);backdrop-filter:blur(3px);
+      opacity:0;pointer-events:none;transition:opacity .22s ease;
+    }
+    .protect-overlay.show{opacity:1;pointer-events:auto}
 
     /* ── Bảo vệ ảnh ── */
     img{
@@ -433,7 +440,8 @@
   </div>
   <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
 
-  <!-- Toast cảnh báo bảo vệ ảnh -->
+  <!-- Overlay + Toast cảnh báo bảo vệ ảnh -->
+  <div class="protect-overlay" id="protectOverlay"></div>
   <div class="protect-toast" id="protectToast" role="alert" aria-live="assertive">
     <div class="protect-toast-icon">🚫</div>
     <div class="protect-toast-text">
@@ -763,10 +771,15 @@
     /* ── Bảo vệ ảnh: chặn chuột phải, kéo thả, copy src ── */
     let toastTimer = null;
     function showProtectToast(){
-      const toast = document.getElementById("protectToast");
+      const toast   = document.getElementById("protectToast");
+      const overlay = document.getElementById("protectOverlay");
       toast.classList.add("show");
+      overlay.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+        overlay.classList.remove("show");
+      }, 3000);
     }
 
     document.addEventListener("contextmenu", e => {
